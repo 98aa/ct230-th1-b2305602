@@ -84,6 +84,14 @@ fi
 # TODO(TH1-1): cảnh báo nếu các cổng 8080 8081 8082 8083 8090 8091 8180 8761 8888 đang bận
 #   (gợi ý: mở được kết nối tới /dev/tcp/127.0.0.1/<cổng> nghĩa là cổng đang bận; dùng hàm canh_bao)
 
+CONG_CAN_KIEM_TRA=(8080 8081 8082 8083 8090 8091 8180 8761 8888)
+
+for p in "${CONG_CAN_KIEM_TRA[@]}"; do
+    if (echo > /dev/tcp/127.0.0.1/$p) >/dev/null 2>&1; then
+        canh_bao "cổng $p đang bận"
+    fi
+done
+
 if [ "$loi" -eq 0 ]; then echo "== Môi trường đạt yêu cầu =="
 else echo "== Còn mục [LỖI] — sửa theo hướng dẫn rồi chạy lại =="; fi
 exit $loi
