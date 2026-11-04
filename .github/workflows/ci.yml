@@ -2,7 +2,7 @@ name: ci
 # Pipeline tối thiểu cho bài thực hành: mọi push/PR phải chạy xanh ./mvnw -B verify
 on:
   push:
-    branches: [ main ]
+    branches: [ th1 ]
   pull_request:
 jobs:
   verify:
